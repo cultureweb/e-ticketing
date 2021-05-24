@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: cultureweb/auth
+          image: us.gcr.io/eticketing-dev/auth
 ---
 apiVersion: v1
 kind: Service
