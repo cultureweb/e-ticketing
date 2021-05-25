@@ -40,7 +40,7 @@ C:\Windows\System32\drivers\hosts
 
 ## Dev environment through Google Cloud instead of local
 
-Start building on GCP with a [Free Trial](https://cloud.google.com/free) that includes $300 in credits
+Start building on Google Cloud Platform (GCP) with a [Free Trial](https://cloud.google.com/free) that includes $300 in credits. GCP lets you build, deploy, and scale applications, websites, and services on the same infrastructure as Google.
 
 ### Create a new project
 
