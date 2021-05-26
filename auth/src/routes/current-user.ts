@@ -13,8 +13,6 @@ router.get("/api/users/currentuser", (req, res) => {
   } catch (err) {
     res.send({ currentUser: null });
   }
-
-  // res.send("Hi there!");
 });
 
 export { router as currentUserRouter };
