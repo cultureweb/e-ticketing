@@ -51,3 +51,21 @@ Then go to **Kubernetes Engine API > Clusters**
 ## Google Cloud Sdk
 
 install [Google Cloud Sdk](https://cloud.google.com/sdk/docs/quickstarts) wich is a set of tools to manage resources and applications hosted on Google Cloud.
+
+## Update pods
+
+if any point in time you feel as thougt you made a change, that it's not being reflected inside the browser, go through those steps below
+
+- List all Pods
+
+```
+kubectl get pods
+```
+
+- Delete the pod using kubectl
+
+The pod is recreating automatically even after the deletion of the pod manually. Replace **_client-depl-1c565545fkl-9kjgcd_** by your own pod.
+
+```
+kubectl delete pods client-depl-1c565545fkl-9kjgcd
+```
