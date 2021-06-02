@@ -1,8 +1,6 @@
 import buildClient from "../api/build-client";
 
 const home = ({ currentUser }) => {
-  console.log("currentUser", currentUser);
-
   return currentUser ? (
     <h1>you are signed in</h1>
   ) : (
@@ -11,6 +9,7 @@ const home = ({ currentUser }) => {
 };
 
 home.getInitialProps = async (context) => {
+  console.log("HOME PAGE");
   const client = buildClient(context);
 
   const { data } = await client.get("/api/users/currentuser");
