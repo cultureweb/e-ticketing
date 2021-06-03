@@ -24,3 +24,5 @@ yarn-error.log*
 
 # next.js build output
 .next
+
+/common/.git
