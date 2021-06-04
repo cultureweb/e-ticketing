@@ -6,11 +6,11 @@ import request from "supertest";
 declare global {
   namespace NodeJS {
     interface Global {
-      signin(): Promise<string[]>;
+      getAuthCookie(): Promise<string[]>;
     }
   }
 }
-global.signin = async () => {
+global.getAuthCookie = async () => {
   const email = "test@test.com";
   const password = "password";
 
