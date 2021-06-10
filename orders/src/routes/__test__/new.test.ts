@@ -20,7 +20,7 @@ it("return a status other than 401 if the user is signed in", async () => {
     .post("/api/orders")
     .set("Cookie", global.signin())
     .send({});
-  console.log(response.status);
+
   expect(response.status).not.toEqual(401);
 });
 
@@ -34,8 +34,7 @@ it("return an error if an invalid ticketId is provided", async () => {
 
 it("return an error if the ticket does not exist", async () => {
   const ticketId = mongoose.Types.ObjectId();
-  console.log("esdf");
-  console.log(ticketId);
+
   await request(app)
     .post("/api/orders")
     .set("Cookie", global.signin())
