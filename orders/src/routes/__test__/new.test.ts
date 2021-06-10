@@ -75,4 +75,11 @@ it("reserves a ticket", async () => {
     .set("Cookie", global.signin())
     .send({ ticketId: ticket.id })
     .expect(201);
+
+  const orders = await Order.find({});
+
+  expect(orders.length).toEqual(1);
+  expect(orders[0].status).toEqual(OrderStatus.Created);
 });
+
+it.todo("emits an order created event");
