@@ -19,7 +19,6 @@ let mongo: any;
 beforeAll(async () => {
   process.env.JWT_KEY = "fghf"; //To handle the issue for now
   // process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
   mongo = new MongoMemoryServer();
   const mongoUri = await mongo.getUri();
 
