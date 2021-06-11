@@ -1,7 +1,6 @@
 import request from "supertest";
 import { app } from "../../app";
-import { Ticket } from "../../models/tickets";
-import { Order } from "../../models/order";
+import { Ticket } from "../../models/ticket";
 
 it("Fetches the order", async () => {
   // Create a ticket

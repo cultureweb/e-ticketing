@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 import request from "supertest";
 import { app } from "../../app";
-import { Ticket } from "../../models/tickets";
+import { Ticket } from "../../models/ticket";
 import { Order, OrderStatus } from "../../models/order";
+import { natsWrapper } from "../../nats-wrapper";
 
 it("has a route handler to api/tickets for post requests", async () => {
   const response = await request(app).post("/api/orders").send({});
@@ -81,4 +82,17 @@ it("reserves a ticket", async () => {
   expect(orders[0].status).toEqual(OrderStatus.Created);
 });
 
-it.todo("emits an order created event");
+it("emits an order created event", async () => {
+  // First we create a ticket
+  const ticket = Ticket.build({ title: "concert", price: 20 });
+  await ticket.save();
+
+  // Then we create an order with ticket
+  await request(app)
+    .post("/api/orders")
+    .set("Cookie", global.signin())
+    .send({ ticketId: ticket.id })
+    .expect(201);
+
+  expect(natsWrapper.client.publish).toHaveBeenCalled(); // change this to .not.toHaveBeenCalled() to make the test fails
+});

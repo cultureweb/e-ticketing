@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { OrderStatus } from "@eticketing/common";
-import { TicketDoc } from "./tickets";
+import { TicketDoc } from "./ticket";
 
 export { OrderStatus };
 // to remind that these properties are required to create an order
