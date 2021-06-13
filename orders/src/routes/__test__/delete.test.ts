@@ -14,6 +14,7 @@ it("should return 404 if there is no order", async () => {
 it("should return 401 if the user is not authenticated", async () => {
   // Create a ticket
   const ticket = Ticket.build({
+    id: mongoose.Types.ObjectId().toHexString(),
     title: "concert",
     price: 30,
   });
@@ -32,6 +33,7 @@ it("should return 401 if the user is not authenticated", async () => {
 it("marks an order as cancelled", async () => {
   // Create a ticket with Ticket Model
   const ticket = Ticket.build({
+    id: mongoose.Types.ObjectId().toHexString(),
     title: "concert",
     price: 30,
   });
@@ -59,7 +61,9 @@ it("marks an order as cancelled", async () => {
 
 it("emits an order cancelled event", async () => {
   // Create a ticket with Ticket Model
+
   const ticket = Ticket.build({
+    id: mongoose.Types.ObjectId().toHexString(),
     title: "concert",
     price: 30,
   });

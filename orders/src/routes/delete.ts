@@ -33,6 +33,7 @@ router.delete(
     const client = natsWrapper.client;
     new OrderCancelledPublisher(client).publish({
       id: order.id,
+      version: order.version,
       ticket: {
         id: order.ticket.id,
       },
