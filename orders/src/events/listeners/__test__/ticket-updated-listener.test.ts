@@ -48,7 +48,7 @@ it("finds, update and saves a ticket", async () => {
   expect(updatedTicket!.version).toEqual(data.version);
 });
 
-it("acks tje messsage", async () => {
+it("acks the messsage", async () => {
   const { listener, data, msg } = await setup();
 
   await listener.onMessage(data, msg);
