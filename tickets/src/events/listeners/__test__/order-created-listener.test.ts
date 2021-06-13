@@ -6,10 +6,10 @@ import { Ticket } from "../../../models/ticket";
 import mongoose from "mongoose";
 
 const setup = async () => {
-  // create an istance of the listener
+  // Create an istance of the listener
   const listener = new OrderCreatedListener(natsWrapper.client);
 
-  // build a ticket
+  // Create and save a ticket
   const ticket = Ticket.build({
     title: "party",
     price: 40,
@@ -17,7 +17,7 @@ const setup = async () => {
   });
   await ticket.save();
 
-  // build a fake data object
+  // Create a fake data object
   const data: OrderCreatedEvent["data"] = {
     id: mongoose.Types.ObjectId().toHexString(),
     version: 0,
@@ -30,7 +30,7 @@ const setup = async () => {
     },
   };
 
-  // Build a fake Message
+  // Create a fake Message
   // @ts-ignore
   const msg: Message = {
     ack: jest.fn(),
@@ -56,4 +56,18 @@ it("ack the message", async () => {
   await listener.onMessage(data, msg);
 
   expect(msg.ack).toHaveBeenCalled();
+});
+
+it("publishes a ticket updated event", async () => {
+  const { msg, data, listener, ticket } = await setup();
+
+  await listener.onMessage(data, msg);
+
+  expect(natsWrapper.client.publish).toHaveBeenCalled();
+
+  const ticketUpdatedData = JSON.parse(
+    (natsWrapper.client.publish as jest.Mock).mock.calls[0][1]
+  );
+
+  expect(data.id).toEqual(ticketUpdatedData.orderId);
 });

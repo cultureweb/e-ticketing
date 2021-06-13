@@ -2,6 +2,7 @@ import { Listener, OrderCreatedEvent, Subjects } from "@eticketing/common";
 import { queueGroupName } from "./queue-group-name";
 import { Message } from "node-nats-streaming";
 import { Ticket } from "../../models/ticket";
+import { TicketUpdatedPublisher } from "../publishers/ticket-updated-publisher";
 
 export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
   readonly subject = Subjects.OrderCreated;
@@ -20,6 +21,16 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
 
     // Save  the ticket
     await ticket.save();
+
+    // emit an event to keep the right version of the ticket inside orders
+    await new TicketUpdatedPublisher(this.client).publish({
+      id: ticket.id,
+      version: ticket.version,
+      title: ticket.title,
+      price: ticket.price,
+      userId: ticket.userId,
+      orderId: ticket.orderId,
+    });
 
     // ack the message
     msg.ack();
