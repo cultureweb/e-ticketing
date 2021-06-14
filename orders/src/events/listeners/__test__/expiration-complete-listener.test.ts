@@ -1,16 +1,10 @@
 import { ExpirationCompleteListener } from "../expiration-complete-listener";
 import { natsWrapper } from "../../../nats-wrapper";
-import {
-  Subjects,
-  Listener,
-  ExpirationCompleteEvent,
-  OrderStatus,
-} from "@eticketing/common";
+import { ExpirationCompleteEvent, OrderStatus } from "@eticketing/common";
 import { Message } from "node-nats-streaming";
 import mongoose from "mongoose";
 import { Order } from "../../../models/order";
 import { Ticket } from "../../../models/ticket";
-import { tsImportEqualsDeclaration } from "@babel/types";
 
 const setup = async () => {
   // Create an instance of a Listener
