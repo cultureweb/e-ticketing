@@ -19,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@eticketing/common": "^1.0.2",
+    "@types/bull": "^3.15.1",
     "bull": "^3.22.8",
     "node-nats-streaming": "^0.3.2",
     "ts-node-dev": "^1.1.6",
