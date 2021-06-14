@@ -48,7 +48,7 @@ it("finds, set orderId property of the ticket to null", async () => {
 });
 
 it("acks the messsage", async () => {
-  const { msg, ticket, listener, data, orderId } = await setup();
+  const { msg, listener, data } = await setup();
 
   await listener.onMessage(data, msg);
 
