@@ -9,18 +9,21 @@ import {
   OrderStatus,
 } from "@eticketing/common";
 import { Order } from "../models/order";
+import { stripe } from "../stripe";
+import { Payment } from "../models/payment";
 
 const router = express.Router();
 
 router.post(
   "/api/payments",
   requireAuth,
-  [body("token").notEmpty(), body("orderId").notEmpty()],
+  [body("token").not().isEmpty(), body("orderId").not().isEmpty()],
   validationRequest,
   async (req: Request, res: Response) => {
     const { orderId, token } = req.body;
     // Find the order
     const order = await Order.findById(orderId);
+
     if (!order) {
       throw new NotFoundError();
     }
@@ -33,7 +36,21 @@ router.post(
       throw new BadRequestError("Cannot pay for a cancelled order");
     }
 
-    res.send({ success: true });
+    const charge = await stripe.charges.create({
+      currency: "eur",
+      amount: order.price * 100,
+      source: token,
+      description: "Test Charge",
+    });
+
+    const payment = Payment.build({
+      orderId,
+      stripeId: charge.id,
+    });
+
+    await payment.save();
+
+    res.status(201).send({ success: true });
   }
 );
 
