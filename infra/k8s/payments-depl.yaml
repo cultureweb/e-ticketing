@@ -10,11 +10,12 @@ spec:
   template:
     metadata:
       labels:
-        app: payments
+        app: payments # for service selector
     spec:
       containers:
         - name: payments
-          image: us.gcr.io/eticketing-dev/payments
+          # image: us.gcr.io/eticketing-dev/payments
+          image: cultureweb/eticketing-payments
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

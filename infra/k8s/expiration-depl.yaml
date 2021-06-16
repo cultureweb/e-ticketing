@@ -10,11 +10,12 @@ spec:
   template:
     metadata:
       labels:
-        app: expiration
+        app: expiration # for service selector
     spec:
       containers:
         - name: expiration
-          image: us.gcr.io/eticketing-dev/expiration
+          #image: us.gcr.io/eticketing-dev/expiration
+          image: cultureweb/eticketing-expiration
           env:
             - name: NATS_CLIENT_ID
               valueFrom:
