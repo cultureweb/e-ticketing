@@ -15,7 +15,7 @@ spec:
       containers:
         - name: auth
           # image: us.gcr.io/eticketing-dev/auth
-          image: cultureweb/auth
+          image: cultureweb/eticketing-auth
           env:
             - name: MONGO_URI
               value: "mongodb://auth-mongo-srv:27017/auth"
