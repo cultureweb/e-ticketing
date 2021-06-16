@@ -10,11 +10,12 @@ spec:
   template:
     metadata:
       labels:
-        app: auth
+        app: auth # for service selector
     spec:
       containers:
         - name: auth
-          image: us.gcr.io/eticketing-dev/auth
+          # image: us.gcr.io/eticketing-dev/auth
+          image: cultureweb/auth
           env:
             - name: MONGO_URI
               value: "mongodb://auth-mongo-srv:27017/auth"
@@ -30,7 +31,7 @@ metadata:
   name: auth-srv
 spec:
   selector:
-    app: auth
+    app: auth # find the pod with the metadata label of "auth"
   ports:
     - name: auth
       protocol: TCP
