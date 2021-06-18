@@ -21,3 +21,5 @@ MyDocument.getInitialProps = async (context, client, currentUser) => {
   const initialProps = await Document.getInitialProps(ctx);
   return { ...initialProps };
 };
+
+export default MyDocument;
