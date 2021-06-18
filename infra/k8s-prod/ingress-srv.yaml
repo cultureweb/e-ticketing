@@ -5,7 +5,12 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
+  tls:
+    - hosts:
+        - cultureweb.work
+      secretName: eticketing-tls
   rules:
     - host: cultureweb.work
       http:
@@ -36,7 +41,7 @@ kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
-    service.beta.kubernetes.io/do-loadbalancer-hostname: "http://cultureweb.work"
+    service.beta.kubernetes.io/do-loadbalancer-hostname: "cultureweb.work"
   labels:
     helm.sh/chart: ingress-nginx-2.0.3
     app.kubernetes.io/name: ingress-nginx

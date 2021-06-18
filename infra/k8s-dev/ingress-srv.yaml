@@ -5,9 +5,10 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
   rules:
-    - host: eticketing.dev
+    - host: dev.cultureweb.work
       http:
         paths:
           - path: /api/users/?(.*)
