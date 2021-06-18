@@ -18,7 +18,7 @@ const MyDocument = () => {
 };
 
 MyDocument.getInitialProps = async (context, client, currentUser) => {
-  const initialProps = await Document.getInitialProps(ctx);
+  const initialProps = await Document.getInitialProps(context);
   return { ...initialProps };
 };
 
