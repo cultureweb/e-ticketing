@@ -7,7 +7,7 @@ const buildClient = ({ req }) => {
     return axios.create({
       baseURL:
         //"http://ingress-nginx-controller.ingress-nginx.svc.cluster.local",
-        "http://cultureweb.work/",
+        "https://cultureweb.work/",
       headers: req.headers,
     });
   } else {
