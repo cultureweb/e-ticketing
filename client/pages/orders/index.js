@@ -14,11 +14,13 @@ const OrderIndex = ({ orders }) => {
 
   return (
     <table className="table">
-      <tr>
-        <th>Id</th>
-        <th>title</th>
-        <th>status</th>
-      </tr>
+      <tbody>
+        <tr>
+          <th>Id</th>
+          <th>title</th>
+          <th>status</th>
+        </tr>
+      </tbody>
       <tbody>{orderList}</tbody>
     </table>
   );
